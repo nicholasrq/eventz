@@ -1,0 +1,19 @@
+{
+  "name": "eventz",
+  "version": "1.0.0",
+  "description": "Simple ES6/5 event machine",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "events",
+    "event",
+    "eventmachine"
+  ],
+  "author": "nicholasrq",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^1.13.1"
+  }
+}
