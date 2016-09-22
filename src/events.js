@@ -1,4 +1,4 @@
-class EventMachine{
+class Eventz{
   constructor(events, {
     context   = window,
     expose    = false
@@ -146,4 +146,4 @@ class EventMachine{
   }
 }
 
-export default EventMachine
+export default Eventz
