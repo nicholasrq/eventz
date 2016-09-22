@@ -146,4 +146,4 @@ class Eventz{
   }
 }
 
-export default Eventz
+module.exports = Eventz
