@@ -46,9 +46,9 @@ class Eventz{
   _exposeEvents(context, expose){
     if(expose){
       Object.assign(context, {
-        on    : ::this.on,
-        off   : ::this.off,
-        emit  : ::this.emit
+        on    : this.on.bind(this),
+        off   : this.off.bind(this),
+        emit  : this.emit.bind(this)
       })
     }
   }
