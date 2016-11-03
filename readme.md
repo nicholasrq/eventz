@@ -1,6 +1,6 @@
 # Eventz
 
-Async events inspired by `$.Callbacks` and writen in ES6
+Async events inspired by `$.Callbacks` and written in ES6
 
 # Install
 
