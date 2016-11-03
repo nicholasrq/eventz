@@ -5,7 +5,7 @@ Async events inspired by `$.Callbacks` and written in ES6
 # Install
 
 ```bash
-$ npm install eventz --save
+$ npm install event-z --save
 ```
 
 # Usage
