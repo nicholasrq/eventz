@@ -1,6 +1,6 @@
 {
   "name": "event-z",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Dependencyless simple ES6/5 event machine inspired by `$.Callbacks`",
   "repository": {
     "type": "git",
@@ -13,8 +13,9 @@
   "keywords": [
     "events",
     "event",
+    "eventemitter",
     "eventmachine"
   ],
   "author": "nicholasrq <nr@fenelon.ru>",
-  "license": "ISC"
+  "license": "MIT"
 }
