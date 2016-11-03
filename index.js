@@ -1,9 +1,9 @@
 class Eventz{
   constructor(events, {
-    context   = window,
+    context   = null,
     expose    = false
-  }) {
-    this.allowedEvents  = new Set(events || [])
+  } = {}) {
+    this.allowedEvents  = new Set(this.events || events || [])
     this.context        = context
     this._define('_events',      new Map)
         ._define('_memory',      new Map)
@@ -11,7 +11,7 @@ class Eventz{
         ._define('_options',     new Map)
         ._define('_once',        new Map)
     this._setupEvents()
-    this._exposeEvents(context, expose)
+    this._exposeEvents(this || context, expose)
   }
 
   emit(evt, ...args){
@@ -69,7 +69,6 @@ class Eventz{
   _invokeEvent(event, args){
     const [name, namespace]   = event.split('.'),
           shouldStop          = this._hasOption(name, 'stop'),
-          shouldMemorize      = this._hasOption(name, 'memory'),
           eventsMap           = this._getNamespace(name, namespace);
           
     args = this._saveMemory(name, args)
@@ -146,4 +145,4 @@ class Eventz{
   }
 }
 
-module.exports = Eventz
+export default Eventz
