@@ -3,7 +3,7 @@ class Eventz{
     context   = null,
     expose    = false
   } = {}) {
-    this.allowedEvents  = new Set(this.events || events || [])
+    this.allowedEvents  = new Set(this.eventsList || events || [])
     this.context        = context
     this._define('_events',      new Map)
         ._define('_memory',      new Map)
