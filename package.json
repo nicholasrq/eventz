@@ -2,6 +2,10 @@
   "name": "event-z",
   "version": "1.0.0",
   "description": "Dependencyless simple ES6/5 event machine inspired by `$.Callbacks`",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nicholasrq/eventz.git"
+  },
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
