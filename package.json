@@ -1,5 +1,5 @@
 {
-  "name": "eventz",
+  "name": "event-z",
   "version": "1.0.0",
   "description": "Dependencyless simple ES6/5 event machine inspired by `$.Callbacks`",
   "main": "index.js",

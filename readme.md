@@ -18,7 +18,7 @@ There are two ways to use `Eventz`:
 ## Self-invoking
 
 ```javascript
-import Eventz from 'eventz'
+import Eventz from 'event-z'
 
 // Create instance of Eventz
 const events = new Eventz([
@@ -54,7 +54,7 @@ Available options:
 ## Extending class
 
 ```javascript
-import Eventz from 'eventz'
+import Eventz from 'event-z'
 
 // Create your own class
 class MyClass extends Eventz{
@@ -107,7 +107,7 @@ Options should be passed with events separated by semicolon: `[eventName]:[optio
 `helloSaid:once` or `goodbyeSaid:memory:stop`.
 
 ```javascript
-import Eventz from 'eventz'
+import Eventz from 'event-z'
 
 const events = new Eventz([
   'fireOnce:once',
