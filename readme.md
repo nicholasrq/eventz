@@ -4,8 +4,8 @@ Async events inspired by `$.Callbacks` and writen in ES6
 
 # Install
 
-```
-npm install eventz --save
+```bash
+$ npm install eventz --save
 ```
 
 # Usage
@@ -17,7 +17,7 @@ There are two ways to use `Eventz`:
 
 ## Self-invoking
 
-```
+```javascript
 import Eventz from 'eventz'
 
 // Create instance of Eventz
@@ -53,7 +53,7 @@ Available options:
 
 ## Extending class
 
-```
+```javascript
 import Eventz from 'eventz'
 
 // Create your own class
@@ -106,7 +106,7 @@ will behave. You'll have 3 options:
 Options should be passed with events separated by semicolon: `[eventName]:[option1]:[option2]`, for example
 `helloSaid:once` or `goodbyeSaid:memory:stop`.
 
-```
+```javascript
 import Eventz from 'eventz'
 
 const events = new Eventz([
@@ -162,7 +162,7 @@ events.emit('shouldStop')
 
 You can pass any arguments to the event handler while ivoking event
 
-```
+```javascript
 events.on('someEvent', function(name, surname){
   console.log(`I'am ${name} ${surname}`)
 })
