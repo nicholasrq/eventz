@@ -1,6 +1,6 @@
 {
   "name": "event-z",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Dependencyless simple ES6/5 event machine inspired by `$.Callbacks`",
   "repository": {
     "type": "git",
@@ -9,7 +9,7 @@
   "main": "index.js",
   "scripts": {
     "test": "node test",
-    "coverage" : "istanbul cover test",
+    "coverage": "istanbul cover test",
     "travis": "npm run coverage -- --report lcovonly && cat coverage/lcov.info | coveralls"
   },
   "keywords": [
