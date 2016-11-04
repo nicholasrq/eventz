@@ -5,6 +5,12 @@
 
 Async events inspired by `$.Callbacks` and written in ES6
 
+# Features
+
+* Fully ES6
+* Event options `once`, `memory`, `stop`
+* Events namespacing
+* Can be used as extension for ES6 classes
 
 # Install
 
@@ -67,6 +73,56 @@ class MyClass extends Eventz{
     'helloSaid',
     'goodbyeSaid'
   ];
+
+  invokeAllEvents(){
+    this.emit('helloSaid')
+
+    this.emit('goodbyeSaid')  
+  }
+
+}
+
+// Create instance of your class
+const cls = new MyClass
+
+// Now you can attach events directly
+// to instance of your class
+cls.on('helloSaid', function(){
+  console.log('hello said')
+})
+
+cls.on('goodbyeSaid', function(){
+  console.log('hello said')
+})
+
+// Invoke events from inside of class
+cls.invokeAllEvents()
+
+// Or invoke events directly
+cls.emit('helloSaid')
+
+cls.emit('goodbyeSaid')
+```
+
+## ES6 classes without `extends`
+
+When you don't want to extend your class but still need to have easy way to bind/enit/detach your events you can use `Eventz` this way:
+
+```javascript
+import Eventz from 'event-z'
+
+// Create your own class
+class MyClass{
+
+  constructor(){
+    new Eventz([
+      'helloSaid',
+      'goodbyeSaid'
+    ], {
+      context : this,
+      expose  : true
+    })
+  }
 
   invokeAllEvents(){
     this.emit('helloSaid')
@@ -173,6 +229,70 @@ events.on('someEvent', function(name, surname){
 
 events.emit('someEvent', 'Tim', 'Cook')
 // => I'am Tim Cook
+```
+
+## Multiple events invokation
+
+You also can attach/emit/detach multiple events at once. To do this you should pass event namses as single string separated by space
+
+```javascript
+events.on('firstEvent secondEvent', function(){
+  console.log('event invoked')
+})
+```
+
+Then emit your events separately
+
+```javascript
+events.emit('firstEvent')
+
+events.emit('secondEvent')
+```
+
+or simultaneously
+
+```javascript
+events.emit('firstEvent secondEvent')
+```
+
+You also can detach events this way
+
+```javascript
+events.off('firstEvent secondEvent')
+```
+
+# Events namespacing
+
+Any event can be namespaced. Namespaces separated by `.` from the event name. You don't need to define namespace when initializing `Eventz`.
+
+```javascript
+const events = new Eventz([
+  'myEvent'
+])
+
+events.on('myEvent', function(){
+  console.log('Without namespace')
+})
+
+events.on('myEvent.myNamespace', function(){
+  console.log('With namespace')
+})
+
+events.emit('myEvent')
+// => Without namespace
+// => With namespace
+
+events.emit('myEvent.myNamespace')
+// => With namespace
+
+events.off('myEvent.myNamespace')
+// will remove only namespaced handler
+
+events.emit('myEvent.myNamespace')
+// Nothing happens
+
+events.emit('myEvent')
+// => Without namespace
 ```
 
 # Public methods
