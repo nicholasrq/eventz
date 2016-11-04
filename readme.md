@@ -1,10 +1,10 @@
 # Eventz
 
+[![Build Status](https://travis-ci.org/nicholasrq/eventz.svg?branch=master)](https://travis-ci.org/nicholasrq/eventz)
+[![Coverage Status](https://coveralls.io/repos/github/nicholasrq/eventz/badge.svg?branch=master)](https://coveralls.io/github/nicholasrq/eventz?branch=master)
+
 Async events inspired by `$.Callbacks` and written in ES6
 
-[![Build Status](https://travis-ci.org/nicholasrq/eventz.svg?branch=master)](https://travis-ci.org/nicholasrq/eventz)
-
-[![Coverage Status](https://coveralls.io/repos/github/nicholasrq/eventz/badge.svg?branch=master)](https://coveralls.io/github/nicholasrq/eventz?branch=master)
 
 # Install
 
