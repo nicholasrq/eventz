@@ -160,7 +160,7 @@ When setting up events list you may configure how each of your events
 will behave. You'll have 3 options:
 
 * `once` – each handler will be invoked only once
-* `memory` – event handlers which were attached after event invokation will be called immediatelly
+* `memory` – event handlers which were attached after event invocation will be called immediatelly
 * `stop` – will stop handlers execution if handler returns `false`
 
 Options should be passed with events separated by semicolon: `[eventName]:[option1]:[option2]`, for example
@@ -231,7 +231,7 @@ events.emit('someEvent', 'Tim', 'Cook')
 // => I'am Tim Cook
 ```
 
-## Multiple events invokation
+## Multiple events invocation
 
 You also can attach/emit/detach multiple events at once. To do this you should pass event namses as single string separated by space
 
