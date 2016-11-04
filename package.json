@@ -8,7 +8,9 @@
   },
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test",
+    "coverage" : "istanbul cover test",
+    "travis": "npm run coverage -- --report lcovonly && cat coverage/lcov.info | coveralls"
   },
   "keywords": [
     "events",
@@ -17,5 +19,10 @@
     "eventmachine"
   ],
   "author": "nicholasrq <nr@fenelon.ru>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "coveralls": "^2.11.14",
+    "istanbul": "^0.4.5",
+    "tape": "^4.6.2"
+  }
 }

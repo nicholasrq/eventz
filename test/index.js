@@ -1,0 +1,8 @@
+require('./self_events.js')
+require('./class_events_with_extend.js')
+require('./class_events_without_extend.js')
+require('./event_options.js')
+require('./event_handlers.js')
+require('./multiple_events_invoke.js')
+require('./manipulating_events.js')
+require('./passing_arguments.js')

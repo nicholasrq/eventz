@@ -4,19 +4,22 @@ class Eventz{
     expose    = false
   } = {}) {
     this.allowedEvents  = new Set(this.eventsList || events || [])
-    this.context        = context
+    this.context        = context || this
     this._define('_events',      new Map)
         ._define('_memory',      new Map)
         ._define('_namespaces',  new Map)
         ._define('_options',     new Map)
         ._define('_once',        new Map)
+
     this._setupEvents()
-    this._exposeEvents(this || context, expose)
+    this._exposeEvents(context, expose)
   }
 
   emit(evt, ...args){
     const events = evt.split(' ')
-    for(let event of events){ this._invokeEvent(event, args) }
+    for(let event of events){
+      this._invokeEvent(event, args)
+    }
     return this
   }
   
@@ -32,7 +35,7 @@ class Eventz{
   
   off(evt, callback){
     const events = evt.split(' ')
-    for(let event of events){ this.removeEvent(event, callback) }
+    for(let event of events){ this._removeEvent(event, callback) }
     return this
   }
   
@@ -54,8 +57,9 @@ class Eventz{
   }
 
   _getNamespace(name, ns){
-    if(ns){
-      return this._namespaces.get(`${name}-${ns}`)
+    const eventNamespaces = this._namespaces.get(name)
+    if(eventNamespaces){
+      return eventNamespaces.get(ns) || this._events.get(name)
     } else {
       return this._events.get(name)
     }
@@ -71,11 +75,13 @@ class Eventz{
           shouldStop          = this._hasOption(name, 'stop'),
           eventsMap           = this._getNamespace(name, namespace);
           
-    args = this._saveMemory(name, args)
-    for(let callback of eventsMap){
-      if(this._isAlreadyCalled(name, callback)) continue
-      let result = this._runCallback(name, callback, args)
-      if(shouldStop && result === false) break;
+    if(eventsMap && eventsMap.size > 0){
+      args = this._saveMemory(name, args)
+      for(let callback of eventsMap){
+        if(this._isAlreadyCalled(name, callback)) continue
+        let result = this._runCallback(name, callback, args)
+        if(shouldStop && result === false) break;
+      }
     }
   }
   
@@ -129,9 +135,12 @@ class Eventz{
   }
 
   _saveNamespace(name, ns, callback){
-    const namespace = this._namespaces.get(`${name}-${ns}`) || new Set
+    const eventNamespaces = this._namespaces.get(name) || new Map
+    const namespace       = eventNamespaces.get(ns || "__global") || new Set
+
     namespace.add(callback)
-    this._namespaces.set(`${name}-${ns}`, namespace)
+    eventNamespaces.set(ns || "__global", namespace)
+    this._namespaces.set(name, eventNamespaces)
   }
 
   _setupEvents(){
@@ -140,6 +149,50 @@ class Eventz{
         let [name, ...options] = event.split(':')
         this._options.set(name, new Set(options))
         this._events.set(name, new Set)
+      }
+    }
+  }
+
+  _removeCallbacks(name, callbacksSet){
+    if(callbacksSet instanceof Set){
+      const eventsMap = this._events.get(name)
+      for(let callback of callbacksSet){
+
+        if(eventsMap){ eventsMap.delete(callback) }
+      }
+    }
+  }
+
+  _removeEvent(event, callback){
+    const [name, namespace]     = event.split('.'),
+          eventMap              = this._events.get(name)      || new Set;
+
+    if(eventMap.has(callback)){
+      if(!namespace) eventMap.delete(callback)
+  
+      this._removeNamespace(name, namespace, callback)
+    } else {
+      if(!namespace){
+        this._events.delete(name)
+        this._options.delete(name)
+      }
+  
+      this._removeNamespace(name, namespace)
+    }
+  }
+
+  _removeNamespace(name, ns, callback){
+    const eventNamespaces = this._namespaces.get(name)
+
+    if(eventNamespaces){
+      if(ns){
+        this._removeCallbacks(name, eventNamespaces.get(ns))
+        eventNamespaces.delete(ns)
+      } else {
+        for(let evtns of eventNamespaces){
+          this._removeCallbacks(name, evtns)
+        }
+        this._namespaces.delete(name)
       }
     }
   }

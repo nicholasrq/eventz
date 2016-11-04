@@ -2,6 +2,8 @@
 
 Async events inspired by `$.Callbacks` and written in ES6
 
+[![Build Status](https://travis-ci.org/nicholasrq/eventz.svg?branch=master)](https://travis-ci.org/nicholasrq/eventz)
+
 # Install
 
 ```bash
