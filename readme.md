@@ -3,6 +3,7 @@
 [![npm version](https://badge.fury.io/js/event-z.svg)](https://badge.fury.io/js/event-z)
 [![Build Status](https://travis-ci.org/nicholasrq/eventz.svg?branch=master)](https://travis-ci.org/nicholasrq/eventz)
 [![Coverage Status](https://coveralls.io/repos/github/nicholasrq/eventz/badge.svg?branch=master)](https://coveralls.io/github/nicholasrq/eventz?branch=master)
+[![Dependency Status](https://dependencyci.com/github/nicholasrq/eventz/badge)](https://dependencyci.com/github/nicholasrq/eventz)
 
 Async events inspired by `$.Callbacks` and written in ES6
 
