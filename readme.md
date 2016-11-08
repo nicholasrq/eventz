@@ -7,7 +7,9 @@
 
 Async events inspired by `$.Callbacks` and written in ES6
 
-# Features
+# Why?
+
+You may be wonder why not just use `EventEmitter` from `events` package? So, i've been excited by how does `$.Callbacks` do the job, also i 
 
 * Fully ES6
 * Event options `once`, `memory`, `stop`

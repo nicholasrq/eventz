@@ -34,7 +34,13 @@ class Eventz{
   }
   
   off(evt, callback){
-    const events = evt.split(' ')
+    const events = (function(){
+      if(evt){
+        return evt.split()
+      } else {
+        return this.allowedEvents
+      }
+    })(evt);
     for(let event of events){ this._removeEvent(event, callback) }
     return this
   }
