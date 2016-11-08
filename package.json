@@ -1,6 +1,6 @@
 {
   "name": "event-z",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "Dependencyless simple ES6/5 event machine inspired by `$.Callbacks`",
   "repository": {
     "type": "git",
