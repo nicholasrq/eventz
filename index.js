@@ -34,9 +34,9 @@ class Eventz{
   }
   
   off(evt, callback){
-    const events = (function(){
+    const events = (() => {
       if(evt){
-        return evt.split()
+        return evt.split(' ')
       } else {
         return this.allowedEvents
       }

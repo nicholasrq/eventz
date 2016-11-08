@@ -87,3 +87,23 @@ tape('detaching namespaced event', function(t){
 
   inst.emit('someEvent')
 })
+
+tape('detaching all events', function(t){
+  t.plan(1)
+
+  const inst = new Eventz([
+    'firstEvent',
+    'secondEvent',
+    'thirdEvent'
+  ])
+
+  inst.on('firstEvent secondEvent thirdEvent', function(){
+    t.fail('Event invoked')
+  })
+
+  inst.off()
+
+  inst.on('firstEvent', function(){ t.pass('Event invoked') })
+
+  inst.emit('firstEvent')
+})
