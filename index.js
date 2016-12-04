@@ -82,11 +82,18 @@ class Eventz{
           eventsMap           = this._getNamespace(name, namespace);
           
     if(eventsMap && eventsMap.size > 0){
+      let chain = Promise.resolve()
       args = this._saveMemory(name, args)
       for(let callback of eventsMap){
         if(this._isAlreadyCalled(name, callback)) continue
-        let result = this._runCallback(name, callback, args)
-        if(shouldStop && result === false) break;
+
+        chain = chain.then(next => {
+          if(next !== false){
+            let result = this._runCallback(name, callback, args)
+            return shouldStop ? result : null
+          }
+          return false
+        })
       }
     }
   }
@@ -108,9 +115,7 @@ class Eventz{
 
   _runCallback(name, callback, args){
     args = this._saveMemory(name, args)
-    return setTimeout(() => {
-      callback.call(this.context, ...args)
-    })
+    return callback.call(this.context, ...args)
   }
   
   _saveEvent(evt, callback){
