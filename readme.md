@@ -19,15 +19,15 @@ You may be wonder why not just use `EventEmitter` from `events` package? So, i'v
 # Install
 
 ```bash
-$ npm install event-z --save
+npm install event-z --save
 ```
 
 # Usage
 
 There are two ways to use `Eventz`:
 
-  1. You can invoke `new Events(eventsList[, options])` by itslef
-  2. You can extend your own class from `Eventz`
+1. You can invoke `new Events(eventsList[, options])` by itslef
+2. You can extend your own class from `Eventz`
 
 ## Self-invoking
 

@@ -108,7 +108,9 @@ class Eventz{
 
   _runCallback(name, callback, args){
     args = this._saveMemory(name, args)
-    return callback.call(this.context, ...args)
+    return setTimeout(() => {
+      callback.call(this.context, ...args)
+    })
   }
   
   _saveEvent(evt, callback){
